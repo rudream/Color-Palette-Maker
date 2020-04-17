@@ -286,3 +286,11 @@ input[type="range"]::-webkit-slider-thumb {
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
 }
+
+@media only screen and (max-width: 600px) {
+    .colors {
+        height: 2000px;
+        display: flex;
+        flex-direction: column;
+    }
+}
