@@ -51,10 +51,10 @@ svg {
     width: 80%;
     border-top-right-radius: 1.5rem;
     border-top-left-radius: 1rem;
-    /* pointer-events: none; */
+    pointer-events: none;
     transition: all 0.5s ease-in-out;
-    /* transform: translateY(100px); */
-    /* opacity: 0; */
+    transform: translateY(100px);
+    opacity: 0;
 }
 
 .sliders.active {
@@ -80,7 +80,7 @@ span {
     border-top-right-radius: 1rem;
     border-bottom-left-radius: 1rem;
     border: none;
-    background: rgb(73, 73, 73);
+    background: rgb(31, 33, 63);
     color: white;
     cursor: pointer;
     font-weight: bold;
@@ -91,6 +91,7 @@ span {
     align-items: center;
     justify-content: space-evenly;
     height: 20vh;
+    border-top: 0.4rem solid rgb(31, 33, 63);
 }
 
 .panel button {

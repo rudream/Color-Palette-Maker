@@ -5,9 +5,15 @@ const generateBtn = document.querySelector(".generate");
 const sliders = document.querySelectorAll('input[type="range"]');
 const currentHexes = document.querySelectorAll(".color h2");
 const popup = document.querySelector(".copy-container");
+const adjustButtons = document.querySelectorAll(".adjust");
+const lockButtons = document.querySelectorAll(".lock");
+const closeAdjustments = document.querySelectorAll(".close-adjustment");
+const sliderContainers = document.querySelectorAll(".sliders");
 let initialColors;
 
 //Event Listeners
+
+generateBtn.addEventListener("click", randomColors);
 
 sliders.forEach((slider) => {
     slider.addEventListener("input", hslControls);
@@ -16,6 +22,17 @@ sliders.forEach((slider) => {
 colorDivs.forEach((slider, index) => {
     slider.addEventListener("change", () => {
         updateTextUI(index);
+    });
+});
+
+lockButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+        colorDivs[index].classList.toggle("locked");
+        if (colorDivs[index].classList.contains("locked")) {
+            button.innerHTML = '<i class="fas fa-lock"></i>';
+        } else {
+            button.innerHTML = '<i class="fas fa-lock-open"></i>';
+        }
     });
 });
 
@@ -31,9 +48,20 @@ popup.addEventListener("transitionend", () => {
     popupBox.classList.remove("active");
 });
 
+adjustButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+        openAdjustmentPanel(index);
+    });
+});
+
+closeAdjustments.forEach((button, index) => {
+    button.addEventListener("click", () => {
+        closeAdjustmentPanel(index);
+    });
+});
+
 //Functions
 
-//Randomly generates a hex value
 function generateHex() {
     const letters = "0123456789abcdef";
     let hex = "#";
@@ -48,7 +76,12 @@ function randomColors() {
     colorDivs.forEach((div, index) => {
         const hexText = div.children[0];
         const randomColor = generateHex();
-        initialColors.push(randomColor);
+        if (div.classList.contains("locked")) {
+            initialColors.push(hexText.innerText);
+            return;
+        } else {
+            initialColors.push(randomColor);
+        }
         div.style.backgroundColor = randomColor;
         hexText.innerText = randomColor;
         updateContrast(randomColor, hexText); //Updates the color of the text based on the color to increase contrast and make it readable
@@ -152,6 +185,14 @@ function copyToClipboard(hex) {
     const popupBox = popup.children[0];
     popup.classList.add("active");
     popupBox.classList.add("active");
+}
+
+function openAdjustmentPanel(index) {
+    sliderContainers[index].classList.toggle("active");
+}
+
+function closeAdjustmentPanel(index) {
+    sliderContainers[index].classList.remove("active");
 }
 
 randomColors();
