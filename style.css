@@ -51,10 +51,10 @@ svg {
     width: 80%;
     border-top-right-radius: 1rem;
     border-top-left-radius: 1rem;
-    transform: translateY(100px);
+    /* pointer-events: none; */
     transition: all 0.5s ease-in-out;
-    pointer-events: none;
-    opacity: 0;
+    /* transform: translateY(100px); */
+    /* opacity: 0; */
 }
 
 .sliders.active {
@@ -66,6 +66,10 @@ svg {
 .controls {
     display: flex;
     flex-direction: column;
+}
+
+span {
+    color: rgb(93, 93, 93);
 }
 
 .sliders button {
@@ -119,4 +123,24 @@ svg {
     background: none;
     cursor: pointer;
     margin: 2rem 0rem;
+}
+
+input[type="range"] {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 1rem 0rem;
+    width: 100%;
+    position: relative;
+    border-radius: 1rem;
+    cursor: pointer;
+    height: 1rem;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 0.8rem;
+    width: 0.8rem;
+    border-radius: 0.8rem;
+    background: white;
+    cursor: pointer;
 }
