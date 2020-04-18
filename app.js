@@ -336,7 +336,7 @@ function getLocal() {
                 closeLibrary();
                 const paletteIndex = e.target.classList[1];
                 initialColors = [];
-                paletteObjects[paletteIndex].colors.forEach((color, index) => {
+                savedPalettes[paletteIndex].colors.forEach((color, index) => {
                     initialColors.push(color);
                     colorDivs[index].style.backgroundColor = color;
                     const text = colorDivs[index].children[0];
